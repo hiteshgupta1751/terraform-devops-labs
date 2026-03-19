@@ -17,6 +17,7 @@ resource "google_compute_instance" "vm1" {
   name         = "terraform-vm"
   machine_type = "e2-micro"
   zone         = "asia-south1-a"
+  tags = ["http-server"]
 
   boot_disk {
     initialize_params {
