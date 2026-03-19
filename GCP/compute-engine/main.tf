@@ -17,7 +17,7 @@ resource "google_compute_instance" "vm1" {
   name         = "terraform-vm"
   machine_type = "e2-micro"
   zone         = "asia-south1-a"
-  tags = ["http-server"]
+  tags         = ["http-server"]
 
   boot_disk {
     initialize_params {
@@ -42,5 +42,6 @@ resource "google_compute_firewall" "allow_http" {
     ports    = ["80"]
   }
 
-  target_tags = ["http-server"]
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["http-server"]
 }
