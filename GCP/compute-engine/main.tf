@@ -1,0 +1,34 @@
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 6.0"
+    }
+  }
+}
+
+provider "google" {
+  project = "terraform-devops-labs-hitesh"
+  region  = "asia-south1"
+  zone    = "asia-south1-a"
+}
+
+resource "google_compute_instance" "vm1" {
+  name         = "terraform-vm"
+  machine_type = "e2-micro"
+  zone         = "asia-south1-a"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-12"
+    }
+  }
+
+  network_interface {
+    network = "default"
+
+    access_config {
+    }
+  }
+}
+
